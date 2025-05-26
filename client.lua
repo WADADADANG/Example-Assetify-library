@@ -9,8 +9,8 @@
 
     example path folder
     -----------------------------------------------------
-    pathfile: assetify_library\files\assets\sound\example\sound\bear-191995.mp3
-    pathfile: assetify_library\files\assets\sound\example\sound\beast-snarling-82801.mp3
+    pathfile: assetify_library\files\assets\sound\assetName_example\sound\bear-191995.mp3
+    pathfile: assetify_library\files\assets\sound\assetName_example\sound\beast-snarling-82801.mp3
     -----------------------------------------------------
 
     example asset.vcl

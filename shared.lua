@@ -8,9 +8,9 @@ loadstring(exports.assetify_library:import())()
 
     example path folder
     -----------------------------------------------------
-    pathfile: assetify_library\files\assets\object\example\example.txd
-    pathfile: assetify_library\files\assets\object\example\example.dff
-    pathfile: assetify_library\files\assets\object\example\example.col
+    pathfile: assetify_library\files\assets\object\assetName_example\asset.txd
+    pathfile: assetify_library\files\assets\object\assetName_example\asset.dff
+    pathfile: assetify_library\files\assets\object\assetName_example\asset.col
     -----------------------------------------------------
 
     example asset.vcl
