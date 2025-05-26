@@ -1,0 +1,9 @@
+<meta>
+    <info author="author" version="version" name="name" description="description" type="script"/>
+
+    <script src="server.lua" type="server" />
+    <script src="client.lua" type="client" cache="false" />
+    <script src="shared.lua" type="shared" cache="false" />
+
+    <include resource="assetify_library"/>
+</meta>
