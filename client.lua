@@ -10,8 +10,9 @@
 
     example path folder
     -----------------------------------------------------
-    pathfile: assetify_library\files\assets\sound\assetName_example\sound\bear-191995.mp3
-    pathfile: assetify_library\files\assets\sound\assetName_example\sound\beast-snarling-82801.mp3
+    pathfile: assetify_library\files\assets\sound\soundeffects\sound\bear-191995.mp3
+    pathfile: assetify_library\files\assets\sound\soundeffects\sound\beast-snarling-82801.mp3
+    pathfile: assetify_library\files\assets\sound\soundeffects\sound\warning-sound-6686.mp3
     -----------------------------------------------------
 
     example asset.vcl
@@ -19,23 +20,26 @@
     encryptKey: "XqtcfmbZ9oZU8Ton"
     encryptMode: "aes128"
     assetSounds:
-        animals:
-            -: "bear-191995.mp3"
-            -: "beast-snarling-82801.mp3"
+        animal:
+            "bear": "bear-191995.mp3"
+            "beast": "beast-snarling-82801.mp3"
+        warn:
+            "warning": "warning-sound-6686.mp3"
     -----------------------------------------------------
 ]]--
+local configClient = {}
 
-
-local play = {
-    assetName = "effects",
-    soundCategory = "animals",
-    soundIndex = 1,
+configClient.playSound = {
+    assetName = "soundeffects",
     soundVolume = 100,
     isScoped = true,
     isLooped = false
 }
 
-local cSound = assetify.sound.play( play.assetName, play.soundCategory, play.soundIndex, play.soundVolume, play.isScoped, play.isLooped )
+local cSound1 = assetify.sound.play( configClient.playSound.assetName, "animal", "bear", configClient.playSound.soundVolume, configClient.playSound.isScoped, configClient.playSound.isLooped )
+local cSound2 = assetify.sound.play( configClient.playSound.assetName, "animal", "beast", configClient.playSound.soundVolume, configClient.playSound.isScoped, configClient.playSound.isLooped )
+local cSound3 = assetify.sound.play( configClient.playSound.assetName, "warn", "warning", configClient.playSound.soundVolume, configClient.playSound.isScoped, configClient.playSound.isLooped )
+-- return sound element
 
 
 --[[
@@ -46,7 +50,8 @@ local cSound = assetify.sound.play( play.assetName, play.soundCategory, play.sou
 
     example path folder
     -----------------------------------------------------
-    pathfile: assetify_library\files\assets\module\assetName_example\dep\WADADADANG.png
+    pathfile: assetify_library\files\assets\module\WADADADANG\dep\WADADADANG.png
+    pathfile: assetify_library\files\assets\module\WADADADANG\dep\chicken-noise-196746.mp3
     -----------------------------------------------------
 
     example asset.vcl
@@ -55,17 +60,22 @@ local cSound = assetify.sound.play( play.assetName, play.soundCategory, play.sou
     encryptMode: "aes128"
 
     assetDeps:
-        logo:
-            -: "WADADADANG.png"
+        texture:
+            "WADADADANG": "WADADADANG.png"
+        sound:
+            "chicken": "chicken-noise-196746.mp3"
     -----------------------------------------------------
 ]]--
 
 
-local DepImage = {}
-DepImage.assetName = "module"
-DepImage.assetType = "image"
-DepImage.depType = "logo"
-DepImage.depIndex = 1
-DepImage.depSubIndex = false -- Optional 
+configClient.dep = {
+    assetName = "module",
+    assetType = "WADADADANG",
+    depSubIndex = false,
+}
 
-local cDep = assetify.getAssetDep( DepImage.assetName, DepImage.assetType, DepImage.depType, DepImage.depIndex, DepImage.depSubIndex )
+local cDep1 = assetify.getAssetDep( configClient.dep.assetName, configClient.dep.assetType, "texture", "WADADADANG", configClient.dep.depSubIndex )
+-- return texture element
+
+local cDep2 = assetify.getAssetDep( configClient.dep.assetName, configClient.dep.assetType, "sound", "chicken", configClient.dep.depSubIndex )
+-- return userdata

@@ -5,5 +5,7 @@
     <script src="client.lua" type="client" cache="false" />
     <script src="shared.lua" type="shared" cache="false" />
 
+    <file src="img/warning.png"/>
+
     <include resource="assetify_library"/>
 </meta>
