@@ -19,7 +19,7 @@ configClient.bgImage = {
 
 function loadDepImage ( )
     
-    -- เก็บข้อมูล texture ไว้ในตัวแปร DepImage
+    -- Store texture element in the BgImage table variable.
     for i, depIndex in ipairs( configClient.bgImage ) do
         InsertDepImage ( depIndex )
     end
@@ -30,20 +30,19 @@ function getDepImage ( depIndex )
     if DepImage[ depIndex ] then
         return DepImage[ depIndex ]
     end
-    
-    if configClient.DepImage then
-        local dep = assetify.getAssetDep( configClient.DepImage.assetType, configClient.DepImage.assetName, configClient.DepImage.depType, depIndex )
-        if dep then
-            return dep
-        end
-    end
     return "/img/warning.png"
 end
 
 function InsertDepImage ( depIndex )
     if not DepImage[ depIndex ] then
-        DepImage[ depIndex ] = getDepImage ( depIndex )
-        return DepImage[ depIndex ]
+        if configClient.DepImage then
+            local dep = assetify.getAssetDep( configClient.DepImage.assetType, configClient.DepImage.assetName, configClient.DepImage.depType, depIndex )
+            if dep then
+                DepImage[ depIndex ] = dep
+                return DepImage[ depIndex ]
+            end
+        end
+        return "/img/warning.png"
     end
 end
 
@@ -64,3 +63,5 @@ end
 )
 
 ---------------------------------------------------------------------------------------------
+
+dxDrawImage( 0, 0, 500, 500, getDepImage ( "youwin" ) )
