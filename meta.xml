@@ -3,9 +3,12 @@
 
     <script src="server.lua" type="server" />
     <script src="client.lua" type="client" cache="false" />
+    <script src="recommend_dep_image.lua" type="client" cache="false" />
+    <script src="recommend_dep_sound.lua" type="client" cache="false" />
     <script src="shared.lua" type="shared" cache="false" />
 
     <file src="img/warning.png"/>
+    <file src="sound/warning-sound-6686.mp3"/>
 
     <include resource="assetify_library"/>
 </meta>

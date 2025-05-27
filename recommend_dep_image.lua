@@ -1,8 +1,7 @@
 ---------------------------------------------------------------------------------------------
 
 DepImage = {}
-
-configClient = {}
+if not configClient then configClient = {} end
 configClient.DepImage = {
     assetType = "module",
     assetName = "image",
@@ -42,7 +41,8 @@ function InsertDepImage ( depIndex )
                 return DepImage[ depIndex ]
             end
         end
-        return "/img/warning.png"
+        DepImage[ depIndex ] = "/img/warning.png"
+        return DepImage[ depIndex ]
     end
 end
 
