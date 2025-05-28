@@ -7,7 +7,7 @@
     <script src="recommend_dep_sound.lua" type="client" cache="false" />
     <script src="shared.lua" type="shared" cache="false" />
 
-    <file src="img/warning.png"/>
+    <file src="img/no_image_available.png"/>
     <file src="sound/warning-sound-6686.mp3"/>
 
     <include resource="assetify_library"/>

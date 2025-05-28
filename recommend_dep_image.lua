@@ -2,11 +2,12 @@
 
 DepImage = {}
 if not configClient then configClient = {} end
+isAssetifyLoaded = false
 configClient.DepImage = {
     assetType = "module",
     assetName = "image",
     depType = "texture",
-    depFail = "img/warning.png"
+    depFail = "img/no_image_available.png"
 }
 
 configClient.bgImage = {
@@ -27,8 +28,10 @@ function loadDepImage ( )
 end
 
 function getDepImage ( depIndex )
-    if DepImage[ depIndex ] then
-        return DepImage[ depIndex ]
+    if isAssetifyLoaded then
+        if DepImage[ depIndex ] then
+            return DepImage[ depIndex ]
+        end
     end
     return configClient.DepSound.depFail
 end
@@ -42,6 +45,8 @@ function InsertDepImage ( depIndex )
                 return DepImage[ depIndex ]
             end
         end
+        DepImage[ depIndex ] = configClient.DepImage.depFail
+        return DepImage[ depIndex ]
     end
 end
 
@@ -55,10 +60,14 @@ assetify.network:fetch("Assetify:onAssetLoad", true):on(
     end
 )
 
+assetify.scheduler.execOnLoad(function()
+    isAssetifyLoaded = true
+end
+)
+
 addEventHandler( "onClientResourceStart", resourceRoot, 
 function ( )
 
-    local isAssetifyLoaded = assetify.isLoaded()
     if isAssetifyLoaded then
         loadDepImage ( )
     end
