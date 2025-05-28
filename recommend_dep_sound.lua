@@ -5,7 +5,8 @@ if not configClient then configClient = {} end
 configClient.DepSound = {
     assetType = "module",
     assetName = "WADADADANG",
-    depType = "sound"
+    depType = "sound",
+    depFail = "sound/warning-sound-6686.mp3"
 }
 
 configClient.sound = {
@@ -25,7 +26,7 @@ function getDepSound ( depIndex )
     if DepSound[ depIndex ] then
         return DepSound[ depIndex ]
     end
-    return "/sound/warning-sound-6686.mp3"
+    return configClient.DepSound.depFail
 end
 
 function InsertDepSound ( depIndex )
@@ -37,8 +38,6 @@ function InsertDepSound ( depIndex )
                 return DepSound[ depIndex ]
             end
         end
-        DepSound[ depIndex ] = "/sound/warning-sound-6686.mp3"
-        return DepSound[ depIndex ]
     end
 end
 
@@ -54,7 +53,12 @@ assetify.network:fetch("Assetify:onAssetLoad", true):on(
 
 addEventHandler( "onClientResourceStart", resourceRoot, 
 function ( )
-    loadDepSound ( )
+
+    local isAssetifyLoaded = assetify.isLoaded()
+    if isAssetifyLoaded then
+        loadDepSound ( )
+    end
+
 end
 )
 
