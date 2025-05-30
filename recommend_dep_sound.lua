@@ -46,14 +46,14 @@ function InsertDepSound ( depIndex )
     end
 end
 
-assetify.network:fetch("Assetify:onAssetLoad", true):on(
-    function ( assetType, assetName )
-        if assetType == configClient.DepSound.assetType then
-            if assetName == configClient.DepSound.assetName then
-                loadDepSound ( )
-            end
-        end
-    end
+assetify.network:fetch("Assetify:onLoad", true):on(function()
+   isAssetifyLoaded = true
+end
+)
+
+assetify.network:fetch("Assetify:onUnload", true):on(function()
+   isAssetifyLoaded = false
+end
 )
 
 assetify.scheduler.execOnLoad(function()
@@ -64,10 +64,11 @@ end
 addEventHandler( "onClientResourceStart", resourceRoot, 
 function ( )
 
+    isAssetifyLoaded = assetify.isLoaded()
     if isAssetifyLoaded then
         loadDepSound ( )
     end
-
+    
 end
 )
 
