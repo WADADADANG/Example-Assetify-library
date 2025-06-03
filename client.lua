@@ -1,3 +1,20 @@
+--------------------------------------------------------------------------------------------------
+
+local network = {}
+
+network.getGroundPosition = assetify.network:create( "getGroundPositionFromServer", true ):on(
+    function ( self, px, py, pz, height )
+        enginePreloadWorldArea( px, py, 50 )
+        local ground = getGroundPosition( px, py, pz + height )
+        return px, py, ground
+    end,
+    { isAsync = true, isPrioritized = true, subscriptionLimit = 5 }
+)
+
+--------------------------------------------------------------------------------------------------
+
+
+
 
 
 
